@@ -1,24 +1,23 @@
-const userServices = require("../services/userServices");
-exports.createUser = async (req, res) => {
-  try {
+const userServices = require("../services/user.services");
+// exports.createUser = async (req, res) => {
+//   try {
+//     const user = await userServices.createUser(req.body);
+//     res.status(201).json(" user created successfully");
+//   } catch (err) {
+//     res.status(500).json(err.nessage);
+//   }
+// };
 
-    const user = await userServices.createUser(req.body);
-    res.status(201).json(user);
-  } catch (err) {
-    console.log(err);
-  }
-};
+// exports.login = async (req, res) => {
+//   try {
+//     console.log(req.body.name, req.body.password);
 
-exports.login = async (req, res) => {
-  try {
-    console.log(req.body.name, req.body.password);
-    
-    const user = await userServices.login(req.body.name, req.body.password);
-    res.status(201).json(user);
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     const user = await userServices.login(req.body.name, req.body.password);
+//     res.status(201).json(user);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await userServices.getAllUsers();
