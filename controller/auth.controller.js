@@ -1,22 +1,10 @@
-const userServices = require("../services/user.services");
-import { errorHandler } from '../utils/error.js';
-exports.signUp = async (req, res) => {
-  try {
-    const user = await userServices.createUser(req.body);
-    res.status(201).json(" user created successfully");
-  } catch (err) {
-    next(err);
-  }
+const authServices = require("../services/auth.services");
+exports.signUp = async (req, res, next) => {
+  console.log(req.body);
+
+  return await authServices.signup(req.body, res, next);
 };
 
-exports.login = async (req, res) => {
-  try {
-    console.log(req.body.name, req.body.password);
-
-    const user = await userServices.login(req.body.name, req.body.password);
-    res.status(201).json(user);
-  } catch (err) {
-    next(err);
-  }
+exports.signin = async (req, res, next) => {
+  return await authServices.signin(req.body.name, req.body.password, res, next);
 };
- 

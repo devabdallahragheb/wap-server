@@ -1,29 +1,12 @@
 const userServices = require("../services/user.services");
-// exports.createUser = async (req, res) => {
-//   try {
-//     const user = await userServices.createUser(req.body);
-//     res.status(201).json(" user created successfully");
-//   } catch (err) {
-//     res.status(500).json(err.nessage);
-//   }
-// };
 
-// exports.login = async (req, res) => {
-//   try {
-//     console.log(req.body.name, req.body.password);
-
-//     const user = await userServices.login(req.body.name, req.body.password);
-//     res.status(201).json(user);
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
 exports.getAllUsers = async (req, res) => {
   try {
     const users = await userServices.getAllUsers();
     res.json(users);
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 
@@ -34,6 +17,7 @@ exports.getUserById = async (req, res) => {
     res.json(user);
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 
@@ -44,6 +28,7 @@ exports.updateUser = async (req, res) => {
     res.json(user);
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
 
@@ -54,5 +39,6 @@ exports.deleteUser = async (req, res) => {
     res.json({ msg: "Book removed" });
   } catch (err) {
     console.log(err);
+    return err;
   }
 };
