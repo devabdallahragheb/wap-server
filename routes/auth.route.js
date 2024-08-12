@@ -4,6 +4,6 @@ const authController = require("../controller/auth.controller");
 
 // CRUD Routes
 router.post("/signup", authController.signUp);
-router.post("/login", authController.login);
+router.post("/signin", authController.signin);
 
 module.exports = router;

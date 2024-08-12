@@ -5,7 +5,13 @@ class UserService {
     var hashedPassword = await bcrypt.hash(userDTO.password, 10);
     userDTO.password = hashedPassword;
     const user = new User(userDTO);
-    return await user.save();
+    try {
+      return await user.save();
+    } catch (error) {
+      console.log(error);
+
+      next(error);
+    }
   }
 
   async getAllUsers() {
@@ -17,23 +23,23 @@ class UserService {
   }
 
   async updateUSer(id, userDTO) {
-    return await User.findByIdAndUpdate(id, { $set: userDTO }, { new: true });
+    try {
+      return await User.findByIdAndUpdate(id, { $set: userDTO }, { new: true });
+    } catch (error) {
+      console.log(error);
+
+      next(error);
+    }
   }
 
   async deleteUser(id) {
-    return await User.findByIdAndRemove(id);
-  }
+    try {
+      return await User.findByIdAndRemove(id);
+    } catch (error) {
+      console.log(error);
 
-  async login(name, password) {
-    const user = await User.findOne({ name });
-    if (!user) {
-      throw new Error("User not found");
+      next(error);
     }
-
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-    }
-    return user;
   }
 }
 module.exports = new UserService();
