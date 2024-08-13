@@ -1,12 +1,12 @@
 const User = require("../model/User");
-var bcrypt = require("bcryptjs");
+const bcrypt = require("bcryptjs");
 const { errorHandler } = require("../utils/error");
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 class AuthService {
   async signup(userDTO, res, next) {
     try {
-      var hashedPassword = await bcrypt.hash(userDTO.password, 10);
+      const  hashedPassword = await bcrypt.hash(userDTO.password, 10);
       userDTO.password = hashedPassword;
       const user = new User(userDTO);
       await user.save();
@@ -74,6 +74,14 @@ class AuthService {
       }
     } catch (error) {
       console.log(error);
+      next(error);
+    }
+  }
+  async signOut(req, res, next) {
+    try {
+      res.clearCookie("access_token");
+      res.status(200).json("User has been logged out!");
+    } catch (error) {
       next(error);
     }
   }
