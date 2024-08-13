@@ -16,3 +16,7 @@ exports.signin = async (req, res, next) => {
 exports.google = async (req, res, next) => {
   return await authServices.google(req, res, next);
 };
+exports.signOut = async (req, res, next) => {
+  return await authServices.signOut(req, res, next);
+};
+
