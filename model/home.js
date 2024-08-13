@@ -57,5 +57,4 @@ const homeSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
- 
-module.exports = mongoose.model("Home", userSchema);
+module.exports = mongoose.model("Home", homeSchema);

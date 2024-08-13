@@ -16,6 +16,6 @@ exports.deleteUser = async (req, res, next) => {
   return await userServices.deleteUser(req, res, next);
 };
 
-export const getMyHomes = async (req, res, next) => {
+exports.getMyHomes = async (req, res, next) => {
   return await userServices.getMyHomes({ userRef: req.params.id });
 };

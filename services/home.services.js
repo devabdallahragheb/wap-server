@@ -4,7 +4,7 @@ class HomeService {
   async createHome(req, res, next) {
     try {
       const home = await Home.create(req.body);
-      return res.status(201).json(listing);
+      return res.status(201).json(home);
     } catch (error) {
       next(error);
     }

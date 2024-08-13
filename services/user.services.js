@@ -2,14 +2,32 @@ const User = require("../model/User");
 const bcrypt = require("bcryptjs");
 class UserService {
   async getAllUsers(req, res, next) {
-    return await User.find();
+    try {
+      const users =   await User.find();
+      res.status(200).json(users);
+    } catch (error) {
+      console.log(error);
+      
+      next(error);
+    }
+
   }
 
   async getUserById(req, res, next) {
-    if (req.user.id !== req.params.id)
-      return next(errorHandler(401, "You can only update your own account!"));
-
-    return await User.findById(req.params.id);
+    try {
+    
+      const user = await User.findById(req.params.id);
+    
+      if (!user) return next(errorHandler(404, 'User not found!'));
+    
+      const { password: pass, ...rest } = user._doc;
+    
+      res.status(200).json(rest);
+    } catch (error) {
+      console.log(error);
+      
+      next(error);
+    }
   }
 
   async updateUSer(req, res, next) {
