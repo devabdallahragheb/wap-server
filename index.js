@@ -13,7 +13,7 @@ const port = process.env.PORT;
 connectDB();
 
 app.use("/api/users", userRoute);
-app.use("/api/", authRoute);
+app.use("/api/auth", authRoute);
 
 app.listen(port, () => {
   console.log("server is runing");
