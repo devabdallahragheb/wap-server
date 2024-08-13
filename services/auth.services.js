@@ -42,8 +42,6 @@ class AuthService {
   async google(req, res, next) {
     try {
       const user = await User.findOne({ email: req.body.email });
-      console.log(req.body.email);
-
       if (user) {
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET);
         const { password: pass, ...rest } = user._doc;
@@ -58,16 +56,12 @@ class AuthService {
           Math.random().toString(36).slice(-8) +
           Math.random().toString(36).slice(-8);
         const hashedPassword = bcrypt.hashSync(password, 10);
-        console.log(hashedPassword);
-
         const newUser = new User({
           name: req.body.name,
           email: req.body.email,
           password: hashedPassword,
           photo: req.body.photo,
         });
-        console.log(newUser, "----------");
-
         const addUser = await newUser.save();
         const token = jwt.sign({ id: addUser._id }, process.env.JWT_SECRET);
         const { password: pass, ...rest } = addUser._doc;
