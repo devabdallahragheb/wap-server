@@ -73,10 +73,13 @@ class HomeService {
   }
 
   async updateHome(req, res, next) {
+    console.log(",req.params.id",req.params.id);
+    
     const home = await Home.findById(req.params.id);
     if (!home) {
       return next(errorHandler(404, "home not found!"));
     }
+    console.log(",req.home.id",home);
     if (req.user.id !== home.userRef) {
       return next(errorHandler(401, "You can only update your own homes!"));
     }
@@ -87,8 +90,11 @@ class HomeService {
         req.body,
         { new: true }
       );
+      console.log("updatedhome",updatedhome);
       res.status(200).json(updatedHome);
     } catch (error) {
+    console.log("errr---------",error);
+    
       next(error);
     }
   }

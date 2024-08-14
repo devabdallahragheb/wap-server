@@ -1,4 +1,5 @@
 const User = require("../model/User");
+const Home = require("../model/home");
 const bcrypt = require("bcryptjs");
 class UserService {
   async getAllUsers(req, res, next) {
@@ -73,7 +74,7 @@ class UserService {
   async getMyHomes(req, res, next) {
     if (req.user.id === req.params.id) {
       try {
-        const homes = await Listing.find({ userRef: req.params.id });
+        const homes = await Home.find({ userRef: req.params.id });
         res.status(200).json(homes);
       } catch (error) {
         next(error);

@@ -12,8 +12,6 @@ exports.deleteHome = async (req, res, next) => {
 };
 
 exports.getAllHomes = async (req, res, next) => {
-  console.log(req.body);
-
   return await homeServices.getAllHomes(req, res, next);
 };
 

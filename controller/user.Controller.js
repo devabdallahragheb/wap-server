@@ -5,6 +5,8 @@ exports.getAllUsers = async (req, res, next) => {
 };
 
 exports.getUserById = async (req, res, next) => {
+  console.log("test");
+  
   return await userServices.getUserById(req, res, next);
 };
 
@@ -17,5 +19,5 @@ exports.deleteUser = async (req, res, next) => {
 };
 
 exports.getMyHomes = async (req, res, next) => {
-  return await userServices.getMyHomes({ userRef: req.params.id });
+  return await userServices.getMyHomes(req, res, next);
 };
