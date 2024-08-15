@@ -2,7 +2,7 @@ version: '3.8'
 services:
   server:
     container_name: server-container
-    image: abdallahragheb/server
+    image: server
     build:
       context: .
     ports:
