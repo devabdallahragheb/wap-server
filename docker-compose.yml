@@ -2,6 +2,7 @@ version: '3.8'
 services:
   server:
     container_name: server-container
+    image: abdallahragheb/server
     build:
       context: .
     ports:
@@ -9,7 +10,7 @@ services:
     depends_on:
       - mongo
   mongo:
-    image: mongo
+    image: abdallahragheb/mongo
     restart: always
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
